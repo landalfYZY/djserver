@@ -2,20 +2,20 @@
 
 var ClickHandler = require(process.cwd() + '/app/controllers/clickHandler.server.js');
 var UserInfo = require(process.cwd() + '/app/controllers/userInfo.server.js');
+var NAME_API = '/api';
+module.exports = function (app, client, cog) {
 
-module.exports = function (app, client, dbName) {
 
-    
-    
     app.route('/') .get(function (req, res) {
             res.sendFile(process.cwd() + '/public/index.html');
         });
 
     //事例
     var clickHandler = new ClickHandler(client);
-    app.route('/api/clicks').post(clickHandler.getClicks);
+    app.route(NAME_API+'/clicks').post(clickHandler.getClicks);
 
-    var userInfo = new UserInfo(client,dbName);
-    app.route('/api/user/get').post(userInfo.getUserInfo);
-    app.route('/api/user/insert').post(userInfo.insertUserInfo);
+    
+    var userInfo = new UserInfo(client,cog);
+    app.route(NAME_API+'/user/get').post(userInfo.getUserInfo);
+    app.route(NAME_API+'/user/insert').post(userInfo.insertUserInfo);
 };
