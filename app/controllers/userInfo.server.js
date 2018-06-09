@@ -34,7 +34,7 @@ function userInfo(client, cog) {
         col.find({}).toArray(function (err, result) {
             if (err) throw err;
             if (result) {
-                res.json(result);
+                res.json(global.filterResult(1000,'success',result));
             }
         })
     }
@@ -56,7 +56,7 @@ function userInfo(client, cog) {
      *          "password" : "loginPass"
      *      }
      *  }
-     * @apiSampleRequest http://localhost:3000/api/user/submit-login
+     * @apiSampleRequest http://localhost:8000/api/user/insert
      * @apiVersion 1.0.0
      */
     this.insertUserInfo = function (req, res) {

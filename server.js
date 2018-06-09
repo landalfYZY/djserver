@@ -5,6 +5,7 @@ var express = require('express'),
     mongo = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var cog = require('./app/util/config.js');
+var mongoose = require('mongoose');
 var app = express();
 
 
@@ -17,9 +18,11 @@ mongo.connect(cog.databaseUrl, function (err, client) {
         console.log('MongoDB successfully connected on port 27017.');
     }
 
+    mongoose.createConnection(cog.databaseUrl);
+
     app.use('/public', express.static(process.cwd() + '/public'));
     app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
-    app.use('/entitys',express.static(process.cwd() + '/app/entitys'));
+    app.use('/models',express.static(process.cwd() + '/app/models'));
 
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json({type: 'application/*+json'}));

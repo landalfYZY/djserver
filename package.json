@@ -10,10 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
-    "mongodb": "^3.0.10"
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.4"
   },
   "apidoc": {
-    "title": "API接口文档", 
+    "title": "API接口文档",
     "url": "http://localhost:8000"
   }
 }
